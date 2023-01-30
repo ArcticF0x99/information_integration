@@ -2,95 +2,110 @@ from strsimpy.normalized_levenshtein import NormalizedLevenshtein
 from strsimpy.jaro_winkler import JaroWinkler
 from strsimpy.jaccard import Jaccard
 
+mediated_schema = ["name", "publisher", "genre", "language", "platform",
+          "price", "date", "sales count", "release date"]
 
 source1 = ["appid", "name", "developer", "publisher", "score_rank",
            "owners", "average_forever", "average_2weeks", "median_forever",
            "median_2weeks", "ccu", "price", "initialprice", "discount", "tags", "languages", "genre"]
 
 
-source2 = ["platform/hardware", "release_date", "developer", "publisher", "genre", "theme", "freanchise",
-"features", "multiplayer_types", "franchises"]
+source2full = ["aliases", "api_detail_url", "characters", "concepts", "date_added", "date_last_updated", "deck",
+               "description", "developers", "expected_release_day", "expected_release_month", "expected_release_quarter",
+               "expected_release_year", "first_appearance_characters", "first_appearance_concepts", "first_appearance_locations",
+               "first_appearance_objects", "first_appearance_people", "franchises", "genres", "guid", "id", "image", "images",
+               "image_tags", "killed_characters", "locations", "name", "number_of_user_reviews", "objects", "original_release_date",
+               "people", "platforms", "publishers", "releases", "dlcs", "reviews", "similar_games", "site_detail_url", "themes", "videos"]
 
-schema = ["Name", "Publisher", "Genre", "Language", "Platform",
-          "Price", "Date", "Sales Count", "Name", "Release Date"]
+source2short = ["developers", "franchises", "genres", "name", "original_release_date", "platforms", "publishers", "releases", "themes"]
+
 
 normalized_levensthein = NormalizedLevenshtein()
 jaro_winkler = JaroWinkler()
+# k shingle -> set of k words
+jaccard = Jaccard(1)
 
-def levenshtein_similarity(schema, data_source):
-    best_matches = []
-    best_scores = []
-    for column in schema:
-        max_similarity = 0
-        closest_match = ''
+def get_similarities(schema, data_source):
+    similarity_pairs = []
 
-        for schema_column in data_source:
-            similarity_lev = normalized_levensthein.similarity(column, schema_column)
-            similarity_jaro = jaro_winkler.similarity(column, schema_column)
-            if similarity > max_similarity:
-                max_similarity = similarity
-                closest_match = schema_column
+    for schema_field in schema:
+        field = {
+            "schema_field": schema_field,
+            "matching_pairs": []
+        }
 
-        best_matches.append(closest_match)
-        best_scores.append(max_similarity)
-    return best_matches, best_scores
+        for source_field in data_source:
+            matching_pair = {
+                "source_field": source_field,
+                "similarities": []
+            }
 
-def jaro_winkler_similarity(schema, data_source):
-    max_similarity = 0
-    closest_column = ''
-    closest_match = ''
-    for column in data_source:
-        for schema_column in schema:
-            similarity = jellyfish.jaro_winkler(column, schema_column)
-            if similarity > max_similarity:
-                max_similarity = similarity
-                closest_column = schema_column
-                closest_match = column
-    return (closest_match, closest_column, similarity)
+            similarity_lev = normalized_levensthein.similarity(schema_field, source_field)
+            similarity_jaro = jaro_winkler.similarity(schema_field, source_field)
+            similarity_jaccard = jaccard.similarity(schema_field, source_field)
 
-def jaccard_similarity(schema, data_source):
-    max_similarity = 0
-    closest_column = ''
-    closest_match = ''
-    for column in data_source:
-        for schema_column in schema:
-            similarity = len(set(column).intersection(schema_column)) / len(set(column).union(schema_column))
-            if similarity > max_similarity:
-                max_similarity = similarity
-                closest_column = schema_column
-                closest_match = column
-    return (closest_match, closest_column, similarity)
+            matching_pair["similarities"] = [similarity_jaro, similarity_jaccard, similarity_lev]
+            field["matching_pairs"].append(matching_pair)
+
+        similarity_pairs.append(field)
+
+    return similarity_pairs
 
 
+def get_best_matchings(similarity_pairs, combination_strat="max", threshold=0.7):
+    matchings = []
 
-def get_best_match(source1, schema, source2):
-    levenshtein_best_match, schema_column1, levenshtein_score = levenshtein_similarity(source1, schema)
-    jaro_winkler_best_match, schema_column2, jaro_winkler_score = jaro_winkler_similarity(source1, schema)
-    jaccard_best_match, schema_column3, jaccard_score = jaccard_similarity(source1, schema)
+    for sim_pair in similarity_pairs:
+        highest_sim_value = 0
+        best_match_field = ""
+
+        for matching_pair in sim_pair["matching_pairs"]:
+            sim_value = None
+
+            if combination_strat == "max":
+                sim_value = max(matching_pair["similarities"])
+            elif combination_strat == "min":
+                sim_value = max(matching_pair["similarities"])
+            elif combination_strat == "avg":
+                sim_value = sum(matching_pair["similarities"]) / len(matching_pair["similarities"])
+
+            if sim_value > highest_sim_value:
+                highest_sim_value = sim_value
+                best_match_field = matching_pair["source_field"]
+
+        if highest_sim_value < threshold:
+            highest_sim_value = 0
+            best_match_field = ""
+
+        matchings.append({
+            "schema_field": sim_pair["schema_field"],
+            "source_field": best_match_field,
+            "sim_value": highest_sim_value
+        })
+
+    return matchings
 
 
-    best_match = None
-    best_score = 0
-    if levenshtein_score > best_score:
-        best_match = levenshtein_best_match
-        best_score = levenshtein_score
-    if jaro_winkler_score > levenshtein_score:
-        best_match = jaro_winkler_best_match
-        best_score = jaro_winkler_score
-    if jaccard_score > jaccard_score:
-        best_match = jaccard_best_match
-        best_score = jaccard_score
+def print_matchings(matchings, combination_strat, threshold):
+    print("combination_strat: " + str(combination_strat) + ", threshold: " + str(threshold))
+
+    for match in matchings:
+        print("schema_field: " + str(match["schema_field"]) + ", source_field: " + str(match["source_field"]) +
+              ", sim_value: " + str(match["sim_value"]))
+
+    print("\n")
 
 
-    return best_match, best_score
+def schema_matching(schema, data_source, combination_strat="max", threshold=0.7):
+    similarity_pairs = get_similarities(schema, data_source)
+    matchings = get_best_matchings(similarity_pairs, combination_strat, threshold)
+
+    print_matchings(matchings, combination_strat, threshold)
 
 
 if __name__ == '__main__':
-  """result = get_best_match(source1, schema, source2)
-  print(result)"""
-  best_matches1, best_score1 = levenshtein_similarity(schema, source1)
-  best_matches2, best_score2 = levenshtein_similarity(schema, source2)
-  print("hello")
+  schema_matching(mediated_schema, source1)
+  schema_matching(mediated_schema, source2short)
 
 
 
