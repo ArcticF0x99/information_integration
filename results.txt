@@ -1,0 +1,237 @@
+Schema | source1 | source2short
+
+combination_strategy: max | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.7651515151515151 | sim_method: jaro_winkler
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: max | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: platform | source_field: platforms | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.7651515151515151 | sim_method: jaro_winkler
+schema_field: release date | source_field: releases | sim_value: 0.9247685185185186 | sim_method: jaro_winkler
+
+-----------------------------------------------
+
+combination_strategy: min | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: min | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field: platforms | sim_value: 0.8888888888888888 | sim_method: jaccard, normalized_levensthein
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+Threshold: 0.5
+
+combination_strategy: min | threshold: 0.5
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.5 | sim_method: jaccard
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: min | threshold: 0.5
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field: platforms | sim_value: 0.8888888888888888 | sim_method: jaccard, normalized_levensthein
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.5 | sim_method: jaccard
+schema_field: release date | source_field: releases | sim_value: 0.5833333333333333 | sim_method: normalized_levensthein
+
+
+
+-----------------------------------------------
+
+combination_strategy: avg | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: avg | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field: platforms | sim_value: 0.9234567901234567 | sim_method: average
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field: releases | sim_value: 0.711033950617284 | sim_method: average
+
+Threshold: 0.6
+
+combination_strategy: avg | threshold: 0.6
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field: discount | sim_value: 0.6035353535353535 | sim_method: average
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: avg | threshold: 0.6
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field: platforms | sim_value: 0.9234567901234567 | sim_method: average
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field: discount | sim_value: 0.6035353535353535 | sim_method: average
+schema_field: release date | source_field: releases | sim_value: 0.711033950617284 | sim_method: average
+
+
+
+
+Schema | source1 | source2full
+
+combination_strategy: max | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.7651515151515151 | sim_method: jaro_winkler
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: max | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: platform | source_field: platforms | sim_value: 0.9925925925925926 | sim_method: jaro_winkler
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.7651515151515151 | sim_method: jaro_winkler
+schema_field: release date | source_field: releases | sim_value: 0.9247685185185186 | sim_method: jaro_winkler
+
+
+--------------------------------------------
+
+combination_strategy: min | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: min | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field: platforms | sim_value: 0.8888888888888888 | sim_method: jaccard, normalized_levensthein
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+Threshold: 0.5
+
+combination_strategy: min | threshold: 0.5
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.5 | sim_method: jaccard
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: min | threshold: 0.5
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: language | source_field: languages | sim_value: 0.8571428571428571 | sim_method: jaccard
+schema_field: platform | source_field: platforms | sim_value: 0.8888888888888888 | sim_method: jaccard, normalized_levensthein
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: jaro_winkler, jaccard, normalized_levensthein
+schema_field: sales count | source_field: discount | sim_value: 0.5 | sim_method: jaccard
+schema_field: release date | source_field: releases | sim_value: 0.5833333333333333 | sim_method: normalized_levensthein
+
+
+
+--------------------------------------------
+
+combination_strategy: avg | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: avg | threshold: 0.7
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field: platforms | sim_value: 0.9234567901234567 | sim_method: average
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field:  | sim_value: 0 | sim_method:
+schema_field: release date | source_field: releases | sim_value: 0.711033950617284 | sim_method: average
+
+Threshold: 0.6
+
+combination_strategy: avg | threshold: 0.6
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field:  | sim_value: 0 | sim_method:
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field: discount | sim_value: 0.6035353535353535 | sim_method: average
+schema_field: release date | source_field:  | sim_value: 0 | sim_method:
+
+
+combination_strategy: avg | threshold: 0.6
+schema_field: name | source_field: name | sim_value: 1.0 | sim_method: average
+schema_field: publisher | source_field: publisher | sim_value: 1.0 | sim_method: average
+schema_field: genre | source_field: genre | sim_value: 1.0 | sim_method: average
+schema_field: language | source_field: languages | sim_value: 0.9128747795414461 | sim_method: average
+schema_field: platform | source_field: platforms | sim_value: 0.9234567901234567 | sim_method: average
+schema_field: price | source_field: price | sim_value: 1.0 | sim_method: average
+schema_field: sales count | source_field: discount | sim_value: 0.6035353535353535 | sim_method: average
+schema_field: release date | source_field: releases | sim_value: 0.711033950617284 | sim_method: average
