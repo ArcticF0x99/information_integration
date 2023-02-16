@@ -24,7 +24,7 @@ source2short = ['developers', 'franchises', 'genres', 'name', 'original_release_
 normalized_levensthein = NormalizedLevenshtein()
 jaro_winkler = JaroWinkler()
 # k shingle -> set of k words
-jaccard = Jaccard(1)
+jaccard = Jaccard(3)
 
 def get_similarities(schema, data_source):
     similarity_pairs = []
@@ -126,7 +126,7 @@ def schema_matching(schema, data_source, combination_strat='max', threshold=0.7,
 
     return matchings
 
-def schema_matching_multiple_data_sources(schema, data_sources, combination_strategy='max', threshold=0.7):
+def schema_matching_multiple_data_sources(schema, data_sources, combination_strategy='max', threshold=0.7, should_print_matchings=False):
     best_matchings = []
 
     for source in data_sources:
@@ -139,13 +139,16 @@ def schema_matching_multiple_data_sources(schema, data_sources, combination_stra
                 if matchings[i]['sim_value'] > best_matchings[i]['sim_value']:
                     best_matchings[i] = matchings[i]
 
-        print_matchings(best_matchings, combination_strategy, threshold)
+        if should_print_matchings:
+            print_matchings(matchings, combination_strategy, threshold)
+
+    return best_matchings
 
 
 if __name__ == '__main__':
   # schema_matching(mediated_schema, source1)
   # schema_matching(mediated_schema, source2short)
-  schema_matching_multiple_data_sources(mediated_schema, [source1, source2short], 'max', 0.7)
+  schema_matching_multiple_data_sources(mediated_schema, [source1, source2short], 'max', 0.7, True)
 
 
 
